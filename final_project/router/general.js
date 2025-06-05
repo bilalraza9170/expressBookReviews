@@ -9,7 +9,9 @@ public_users.post("/register", (req, res) => {
   const password = req.query.password;
 
   if (!username || !password) {
-    return res.status(400).json({ message: "Username or Password not provided" });
+    return res
+      .status(400)
+      .json({ message: "Username or Password not provided" });
   }
 
   const existingUser = users.find(
@@ -17,11 +19,15 @@ public_users.post("/register", (req, res) => {
   );
 
   if (existingUser) {
-    return res.status(409).json({ message: "User is already registered: " + username });
+    return res
+      .status(409)
+      .json({ message: "User is already registered: " + username });
   }
 
   users.push({ username, password });
-  return res.status(201).json({ message: "User registered successfully", username });
+  return res
+    .status(201)
+    .json({ message: "User registered successfully", username });
 });
 
 // Get the book list available in the shop
